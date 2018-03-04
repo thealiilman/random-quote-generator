@@ -8,7 +8,7 @@ function fetchQuote() {
     .then(response => response.json())
     .then(data => {
       let quoteData = data.shift();
-      let quoteText = quoteData.content.slice(3).slice(0, -5);
+      let quoteText = quoteData.content.slice(3).slice(0, -5).trim();
 
       quote.innerHTML = "<span>“</span>" + decodeEntities(quoteText) + "<span>”</span>";
       author.innerText = decodeEntities(quoteData.title);

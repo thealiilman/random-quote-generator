@@ -18,8 +18,9 @@ body {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--green-colour);
+  overflow-x: hidden;
 }
 
 /* Content Container */
@@ -50,7 +51,6 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 48px;
 }
 
 .quote-container p {
@@ -61,6 +61,10 @@ body {
   font-weight: 700;
 }
 
+.quote-container span {
+  color: #333;
+}
+
 .quote-container button {
   margin-top: 8px;
   padding: 8px;
@@ -68,9 +72,15 @@ body {
   font-weight: 600;
   font-size: 16px;
   border-radius: 8px;
-  border: none;
+  border: 4px solid transparent;
   background-color: var(--white-colour);
   color: var(--black-colour);
+  transition: border .25s ease-in-out;
+  cursor: pointer;
+}
+
+.quote-container button:hover {
+  border: 4px solid #333;
 }
 
 /* Footer */
@@ -106,12 +116,18 @@ footer a:hover {
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1199.99px) {
+  .quote-container {
+    font-size: 32px;
+  }
+}
+
 @media screen and (max-width: 767.99px) {
   .container {
     padding: 32px;
   }
 
   .quote-container {
-    font-size: 32px;
+    font-size: 24px;
   }
 }
