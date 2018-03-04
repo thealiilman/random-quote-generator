@@ -4,23 +4,33 @@ const quoteContainer = document.getElementById('quoteContainer'),
       newQuoteBtn = document.getElementById('newQuote');
 
 function fetchQuote() {
-  fetch('https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1', { cache: "no-cache" })
+  fetch('http://ali-ilman.com/api/quotes.json')
     .then(response => response.json())
     .then(data => {
-      let quoteData = data.shift();
-      let quoteText = quoteData.content.slice(3).slice(0, -5).trim();
+      let quoteData = shuffle(data).shift();
 
-      quote.innerHTML = "<span>“</span>" + decodeEntities(quoteText) + "<span>”</span>";
-      author.innerText = decodeEntities(quoteData.title);
+      if (!quote.hasChildNodes() || quoteData.quote !== quote.childNodes[1].innerText) {
+        setQuoteAndAuthor(quoteData.quote, quoteData.author);
+        // console.log(`This was logged from the if statement: ${quote.childNodes[1].innerText}`);
+      }
+      else {
+        quoteData = shuffle(data).shift();
+        setQuoteAndAuthor(quoteData.quote, quoteData.author);
+        // console.log(`This was logged from the else statement: ${quoteData.quote}`);
+      }
     });
 
-  function decodeEntities(encodedString) {
-    let textArea = document.createElement('textarea');
-    textArea.innerHTML = encodedString;
-    let encoded = textArea.value;
+  function setQuoteAndAuthor(authorQuote, authorName) {
+    quote.innerHTML = `<span>“</span><span>${authorQuote}</span><span>”</span>`;
+    author.innerText = authorName;
+  }
 
-    textArea.remove();
-    return encoded;
+  function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
   }
 }
 fetchQuote();
