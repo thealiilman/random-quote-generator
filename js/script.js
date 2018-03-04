@@ -30,4 +30,3 @@ document.onkeydown = (e) => {
   if (e.key === 'ArrowRight') fetchQuote();
   if (e.key === ' ') fetchQuote();
 };
-
