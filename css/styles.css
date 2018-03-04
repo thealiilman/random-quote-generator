@@ -1,0 +1,117 @@
+:root {
+  --green-colour: #4cd137;
+  --black-colour: #333;
+  --white-colour: white;
+}
+
+*, ::before, ::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  color: var(--white-colour);
+  font-family: "Raleway", "Roboto", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--green-colour);
+}
+
+/* Content Container */
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.container h1 {
+  font-weight: 600;
+  text-align: center;
+}
+
+.container h1::after {
+  content: "";
+  display: block;
+  margin: auto;
+  height: 4px;
+  width: 25%;
+}
+
+/* Quote Container */
+.quote-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 48px;
+}
+
+.quote-container p {
+  margin-bottom: 8px;
+}
+
+.quote-container p:last-of-type {
+  font-weight: 700;
+}
+
+.quote-container button {
+  margin-top: 8px;
+  padding: 8px;
+  font-family: "Raleway", "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--white-colour);
+  color: var(--black-colour);
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  padding: 32px;
+  text-align: center;
+  background-color: var(--white-colour);
+}
+
+footer p, footer a {
+  font-size: 20px;
+  color: var(--black-colour);
+}
+
+footer a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+footer a:hover {
+  border-bottom: 2px solid var(--green-colour);
+}
+
+/* Media Queries */
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 64px;
+  }
+
+  .quote-container {
+    font-size: 48px;
+  }
+}
+
+@media screen and (max-width: 767.99px) {
+  .container {
+    padding: 32px;
+  }
+
+  .quote-container {
+    font-size: 32px;
+  }
+}
