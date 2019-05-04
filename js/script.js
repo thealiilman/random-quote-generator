@@ -4,17 +4,19 @@ const quoteContainer = document.getElementById('quoteContainer'),
       newQuoteBtn = document.getElementById('newQuote');
 
 function fetchQuote() {
-  fetch('https://random-quote-generator-be.herokuapp.com/api/v1/quotes')
+  fetch('http://ali-ilman.com/api/quotes.json')
     .then(response => response.json())
-    .then(json => {
-      let quoteData = shuffle(json.data).shift();
+    .then(data => {
+      let quoteData = shuffle(data).shift();
 
-      if (!quote.hasChildNodes() || quoteData.attributes.quote !== quote.childNodes[1].innerText) {
-        setQuoteAndAuthor(quoteData.attributes.quote, quoteData.attributes.originator.name);
+      if (!quote.hasChildNodes() || quoteData.quote !== quote.childNodes[1].innerText) {
+        setQuoteAndAuthor(quoteData.quote, quoteData.author);
+        // console.log(`This was logged from the if statement: ${quote.childNodes[1].innerText}`);
       }
       else {
-        quoteData = shuffle(json.data).shift();
-        setQuoteAndAuthor(quoteData.attributes.quote, quoteData.attributes.originator.name);
+        quoteData = shuffle(data).shift();
+        setQuoteAndAuthor(quoteData.quote, quoteData.author);
+        // console.log(`This was logged from the else statement: ${quoteData.quote}`);
       }
     });
 
