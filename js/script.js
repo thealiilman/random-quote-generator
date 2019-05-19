@@ -4,19 +4,17 @@ const quoteContainer = document.getElementById('quoteContainer'),
       newQuoteBtn = document.getElementById('newQuote');
 
 function fetchQuote() {
-  fetch('http://ali-ilman.com/api/quotes.json')
+  fetch('https://ali-ilman.com/api/quotes.json')
     .then(response => response.json())
     .then(data => {
       let quoteData = shuffle(data).shift();
 
       if (!quote.hasChildNodes() || quoteData.quote !== quote.childNodes[1].innerText) {
         setQuoteAndAuthor(quoteData.quote, quoteData.author);
-        // console.log(`This was logged from the if statement: ${quote.childNodes[1].innerText}`);
       }
       else {
         quoteData = shuffle(data).shift();
         setQuoteAndAuthor(quoteData.quote, quoteData.author);
-        // console.log(`This was logged from the else statement: ${quoteData.quote}`);
       }
     });
 
